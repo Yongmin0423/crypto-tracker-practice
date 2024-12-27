@@ -53,7 +53,7 @@ const Description = styled.p`
   margin: 20px 0px;
 `;
 
-const Tabs = styled.div<{ isActive: boolean }>`
+const Tabs = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin: 25px 0px;
@@ -86,14 +86,6 @@ const BackBtn = styled.div`
     border-radius: 10px;
   }
 `;
-
-interface RouteParams {
-  coinId: string;
-}
-
-interface RouteState {
-  name: string;
-}
 
 interface InfoData {
   id: string;
@@ -151,22 +143,23 @@ interface PriceData {
 
 function Coin() {
   //const [loading, setLoading] = useState(true);
-  const { coinId } = useParams<RouteParams>();
-  const { state } = useLocation<RouteState>();
+  const { coinId } = useParams();
+  const { state } = useLocation();
   const priceMatch = useMatch("/:coinId/price");
   const chartMatch = useMatch("/:coinId/chart");
   const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(
     ["info", coinId],
-    () => fetchCoinInfo(coinId)
+    () => fetchCoinInfo(coinId!)
   );
   const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
     ["tickers", coinId],
-    () => fetchCoinTickers(coinId),
+    () => fetchCoinTickers(coinId!),
     {
       refetchInterval: 5000,
     }
   );
   const loading = infoLoading || tickersLoading;
+
   return (
     <Container>
       <Helmet>
