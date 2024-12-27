@@ -6,7 +6,7 @@ import App from "./App.tsx";
 import { lightTheme, theme as darkTheme } from "./theme.ts";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot, useRecoilValue } from "recoil";
-import { isDarkAtom } from "./recoil";
+import { isDarkAtom } from "./recoil.ts";
 
 const queryClient = new QueryClient();
 
