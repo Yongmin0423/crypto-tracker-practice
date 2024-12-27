@@ -11,20 +11,9 @@ const Main = styled.div`
   margin: 10px 0px;
 `;
 
-interface IPrice {
-  ath_date: string;
-  ath_price: number;
-  market_cap: number;
-  market_cap_change_24h: number;
-  percent_from_price_ath: number;
-  price: number;
-  volume_24h: number;
-  volume_24h_change_24h: number;
-}
-
 function Price() {
   const coinId = useOutletContext<string>();
-  const { isLoading, data } = useQuery<IPrice>(["price", coinId], () =>
+  const { isLoading, data } = useQuery(["price", coinId], () =>
     fetchCoinTickers(coinId)
   );
 

@@ -157,16 +157,17 @@ function Coin() {
   const chartMatch = useMatch("/:coinId/chart");
   const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(
     ["info", coinId],
-    () => fetchCoinInfo(coinId)
+    () => fetchCoinInfo(coinId!)
   );
   const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
     ["tickers", coinId],
-    () => fetchCoinTickers(coinId),
+    () => fetchCoinTickers(coinId!),
     {
       refetchInterval: 5000,
     }
   );
   const loading = infoLoading || tickersLoading;
+
   return (
     <Container>
       <Helmet>
