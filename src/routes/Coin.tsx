@@ -1,16 +1,12 @@
 import {
   Link,
   Outlet,
-  Route,
-  Routes,
   useLocation,
   useMatch,
   useParams,
 } from "react-router-dom";
-import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Price from "./Price";
-import Chart from "./Chart";
+
 import { useQuery } from "react-query";
 import { Helmet } from "react-helmet";
 import { fetchCoinInfo, fetchCoinTickers } from "./api";
