@@ -13,9 +13,7 @@ const Main = styled.div`
 
 function Price() {
   const coinId = useOutletContext<string>();
-  const { isLoading, data } = useQuery(["price", coinId], () =>
-    fetchCoinTickers(coinId)
-  );
+  const { data } = useQuery(["price", coinId], () => fetchCoinTickers(coinId));
 
   if (!data || !data.quotes?.USD) {
     return <div>Data not available</div>;
